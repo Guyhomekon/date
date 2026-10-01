@@ -252,18 +252,22 @@ export class DateFormManager {
       console.warn("LocalStorage error:", err);
     }
 
-    // Send to Google Sheets Webhook if configured
+    // Send to Google Sheets Webhook via Hidden Form Submit (Single Path to prevent double entries)
     const webhookUrl = window.GOOGLE_SHEETS_WEBHOOK_URL;
     if (webhookUrl && webhookUrl.trim() !== "") {
       try {
-        // Use mode: "no-cors" with text/plain to bypass browser CORS redirection restrictions
-        await fetch(webhookUrl, {
-          method: "POST",
-          headers: { "Content-Type": "text/plain;charset=utf-8" },
-          mode: "no-cors",
-          body: JSON.stringify(payload)
-        });
-        console.log("Successfully sent payload to Google Sheets:", payload);
+        const form = document.getElementById("gscript_hidden_form");
+        if (form) {
+          form.action = webhookUrl;
+          document.getElementById("gf_types").value = payload.types || "";
+          document.getElementById("gf_date").value = payload.date || "";
+          document.getElementById("gf_dateLabel").value = payload.dateLabel || "";
+          document.getElementById("gf_time").value = payload.time || "";
+          document.getElementById("gf_timeLabel").value = payload.timeLabel || "";
+          document.getElementById("gf_message").value = payload.message || "";
+          form.submit();
+        }
+        console.log("Successfully dispatched payload to Google Sheets:", payload);
       } catch (e) {
         console.warn("Google Sheets submission error:", e);
       }

@@ -350,9 +350,21 @@
     </section>
   </main>
 
+  <!-- Hidden iframe and form for 100% reliable Google Sheets submission from localhost -->
+  <iframe name="gscript_hidden_iframe" id="gscript_hidden_iframe" style="display:none;" aria-hidden="true"></iframe>
+  <form id="gscript_hidden_form" method="POST" target="gscript_hidden_iframe" style="display:none;">
+    <input type="hidden" name="recipient" id="gf_recipient" value="Emma 🤍">
+    <input type="hidden" name="types" id="gf_types" value="">
+    <input type="hidden" name="date" id="gf_date" value="">
+    <input type="hidden" name="dateLabel" id="gf_dateLabel" value="">
+    <input type="hidden" name="time" id="gf_time" value="">
+    <input type="hidden" name="timeLabel" id="gf_timeLabel" value="">
+    <input type="hidden" name="message" id="gf_message" value="">
+  </form>
+
   <!-- URL de votre Google Apps Script pour enregistrer les réponses dans Google Sheets -->
   <script>
-    window.GOOGLE_SHEETS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxA_sIfZMG8aOpLpB5GF_6nXSxfkJi72E4FMDj_2F3mRStcKs7orsrl7NMOmzQlrhyhlg/exec";
+    window.GOOGLE_SHEETS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxHxWDsUQmSDEyL_1jV1Au4KSUsJ77K144jIojAiloPTz6_qKYq3EA2X6xl_udMd70MSw/exec";
   </script>
   <script type="module" src="./src/main.js"></script>
 </body>
