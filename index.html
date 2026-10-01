@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Une question importante pour Emma 🤍</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23ff4d6d'/><path d='M50 78 C 30 60, 15 48, 15 33 C 15 20, 26 12, 38 12 C 45 12, 48 16, 50 20 C 52 16, 55 12, 62 12 C 74 12, 85 20, 85 33 C 85 48, 70 60, 50 78 Z' fill='%23ffffff'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <!-- Ambient floating heart background -->
+  <div id="heart-bg" aria-hidden="true"></div>
+  <div class="glass-orb orb-1" aria-hidden="true"></div>
+  <div class="glass-orb orb-2" aria-hidden="true"></div>
+
+  <main id="app">
+    <!-- ============================================================ -->
+    <!-- PREMIÈRE PAGE — WELCOME SCREEN                               -->
+    <!-- ============================================================ -->
+    <section id="welcome-screen" class="screen active" aria-live="polite">
+      <div class="welcome-card">
+        <div class="badge-subtitle" id="welcome-subtitle">
+          <span class="heart-pulse">🤍</span> Emma <span class="heart-pulse">🤍</span>
+        </div>
+        
+        <h1 class="main-question" id="main-question">
+          Veux-tu aller en date avec moi ?
+        </h1>
+
+        <div id="yes-celebration-box" class="celebration-box hidden">
+          <div class="sparkle-icon">✨</div>
+          <p id="celebration-text" class="celebration-text">Je savais que tu dirais oui 🤍</p>
+        </div>
+
+        <div class="buttons-wrapper" id="buttons-wrapper">
+          <button id="btn-yes" class="btn-primary" type="button">
+            <span class="btn-text">Oui 🤍</span>
+            <span class="btn-glow"></span>
+          </button>
+          
+          <button id="btn-no" class="btn-secondary" type="button">
+            <span id="btn-no-text">Non</span>
+          </button>
+        </div>
+
+        <div id="hint-container" class="hint-container">
+          <p id="hint-message" class="hint-message" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- FORMULAIRE DE CHOIX DU DATE                                  -->
+    <!-- ============================================================ -->
+    <section id="date-form-screen" class="screen hidden" aria-live="polite">
+      <div class="form-container">
+        
+        <!-- Header & Progress Bar -->
+        <header class="form-header">
+          <div class="form-badge">Notre Date Idéal 💖</div>
+          <h2 class="form-title" id="form-step-title">Choisis notre programme, Emma</h2>
+          
+          <div class="progress-bar-container">
+            <div class="progress-bar-track">
+              <div class="progress-bar-fill" id="progress-fill"></div>
+            </div>
+            <div class="step-indicators">
+              <span class="step-dot active" data-step="1">1</span>
+              <span class="step-dot" data-step="2">2</span>
+              <span class="step-dot" data-step="3">3</span>
+              <span class="step-dot" data-step="4">4</span>
+              <span class="step-dot" data-step="5">5</span>
+            </div>
+          </div>
+        </header>
+
+        <!-- STEP 1: TYPE DE DATE -->
+        <div id="step-1" class="form-step active">
+          <h3 class="step-question">Quel genre de rendez-vous te ferait le plus plaisir ?</h3>
+          <p class="step-subtext">Sélectionne une ou plusieurs idées qui te tentent</p>
+          
+          <div class="cards-grid" id="date-type-grid">
+            <button type="button" class="option-card" data-value="Dîner chic & Gastronomie">
+              <div class="card-icon">🍷</div>
+              <div class="card-content">
+                <h4>Dîner chic</h4>
+                <p>Un beau restaurant romantique aux bougies</p>
+              </div>
+              <div class="card-check">✓</div>
+            </button>
+
+            <button type="button" class="option-card" data-value="Pique-nique au coucher du soleil">
+              <div class="card-icon">🧺</div>
+              <div class="card-content">
+                <h4>Pique-nique sunset</h4>
+                <p>Plaid, douceurs salées/sucrées & vue panoramique</p>
+              </div>
+              <div class="card-check">✓</div>
+            </button>
+
+            <button type="button" class="option-card" data-value="Cinéma & Gourmandises">
+              <div class="card-icon">🎬</div>
+              <div class="card-content">
+                <h4>Cinéma & Pop-corn</h4>
+                <p>Le film de ton choix + maxi bac de pop-corn</p>
+              </div>
+              <div class="card-check">✓</div>
+            </button>
+
+            <button type="button" class="option-card" data-value="Musée, Exposition & Café">
+              <div class="card-icon">🎨</div>
+              <div class="card-content">
+                <h4>Balade culturelle</h4>
+                <p>Musée / expo sympa suivi d'un café cozy</p>
+              </div>
+              <div class="card-check">✓</div>
+            </button>
+
+            <button type="button" class="option-card" data-value="Activité Fun & Ludique">
+              <div class="card-icon">🎳</div>
+              <div class="card-content">
+                <h4>Activité fun</h4>
+                <p>Bowling, arcade, mini-golf ou jeux</p>
+              </div>
+              <div class="card-check">✓</div>
+            </button>
+
+            <button type="button" class="option-card" data-value="Soirée Cozy & Chocolat Chaud">
+              <div class="card-icon">☕</div>
+              <div class="card-content">
+                <h4>Pause cozy</h4>
+                <p>Pâtisseries, chocolat chaud & douce discussion</p>
+              </div>
+              <div class="card-check">✓</div>
+            </button>
+
+            <button type="button" class="option-card full-width" data-value="Surprise Totale (Laisse-moi tout gérer !)">
+              <div class="card-icon">✨</div>
+              <div class="card-content">
+                <h4>Surprise totale</h4>
+                <p>Tu te laisses porter, je m'occupe de tout A à Z !</p>
+              </div>
+              <div class="card-check">✓</div>
+            </button>
+          </div>
+
+          <div class="step-actions right-align">
+            <button type="button" id="btn-step-1-next" class="btn-form-primary" disabled>
+              Continuer vers la date ➔
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 2: CHOIX DE LA DATE (JOUR) -->
+        <div id="step-2" class="form-step hidden">
+          <h3 class="step-question">Quel jour te convient le mieux ?</h3>
+          <p class="step-subtext">Choisis une date pour nos retrouvailles</p>
+
+          <div class="quick-dates-grid" id="quick-dates-grid">
+            <button type="button" class="quick-date-btn" data-date-type="this-weekend">
+              <span class="q-icon">🥂</span>
+              <span class="q-label">Ce week-end</span>
+              <span class="q-sub" id="label-this-weekend">Samedi ou Dimanche</span>
+            </button>
+            <button type="button" class="quick-date-btn" data-date-type="next-friday">
+              <span class="q-icon">🌙</span>
+              <span class="q-label">Vendredi soir</span>
+              <span class="q-sub" id="label-next-friday">Fin de semaine</span>
+            </button>
+            <button type="button" class="quick-date-btn" data-date-type="next-saturday">
+              <span class="q-icon">✨</span>
+              <span class="q-label">Samedi soir</span>
+              <span class="q-sub" id="label-next-saturday">Soirée parfaite</span>
+            </button>
+          </div>
+
+          <div class="custom-date-picker-box">
+            <label for="custom-date-input" class="input-label">Ou choisis une date spécifique :</label>
+            <input type="date" id="custom-date-input" class="custom-date-input">
+          </div>
+
+          <div class="step-actions">
+            <button type="button" class="btn-form-secondary btn-back" data-target-step="1">
+              ⬅ Retour
+            </button>
+            <button type="button" id="btn-step-2-next" class="btn-form-primary" disabled>
+              Continuer vers l'heure ➔
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 3: CHOIX DE L'HEURE -->
+        <div id="step-3" class="form-step hidden">
+          <h3 class="step-question">À quelle heure on se rejoint ?</h3>
+          <p class="step-subtext">Sélectionne l'horaire idéal pour toi</p>
+
+          <div class="time-slots-grid" id="time-slots-grid">
+            <button type="button" class="time-slot-btn" data-time="10:30">
+              <span class="t-icon">☀️</span>
+              <span class="t-label">10h30</span>
+              <span class="t-sub">Matinée & Brunch</span>
+            </button>
+
+            <button type="button" class="time-slot-btn" data-time="12:30">
+              <span class="t-icon">🍽️</span>
+              <span class="t-label">12h30</span>
+              <span class="t-sub">Déjeuner</span>
+            </button>
+
+            <button type="button" class="time-slot-btn" data-time="16:00">
+              <span class="t-icon">🍰</span>
+              <span class="t-label">16h00</span>
+              <span class="t-sub">Goûter & Balade</span>
+            </button>
+
+            <button type="button" class="time-slot-btn" data-time="19:30">
+              <span class="t-icon">🍷</span>
+              <span class="t-label">19h30</span>
+              <span class="t-sub">Début de soirée</span>
+            </button>
+
+            <button type="button" class="time-slot-btn" data-time="21:00">
+              <span class="t-icon">✨</span>
+              <span class="t-label">21h00</span>
+              <span class="t-sub">Nocturne</span>
+            </button>
+          </div>
+
+          <div class="custom-time-picker-box">
+            <label for="custom-time-input" class="input-label">Ou heure personnalisée :</label>
+            <input type="time" id="custom-time-input" class="custom-time-input" value="19:30">
+          </div>
+
+          <div class="step-actions">
+            <button type="button" class="btn-form-secondary btn-back" data-target-step="2">
+              ⬅ Retour
+            </button>
+            <button type="button" id="btn-step-3-next" class="btn-form-primary" disabled>
+              Un petit mot ? ➔
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 4: MESSAGE OPTIONNEL -->
+        <div id="step-4" class="form-step hidden">
+          <h3 class="step-question">Un petit mot ou une envie particulière ? 🤍</h3>
+          <p class="step-subtext">Dis-moi tout (plat préféré, lieu coup de cœur, ou juste un coucou)</p>
+
+          <div class="message-box-wrapper">
+            <textarea id="note-input" class="custom-textarea" rows="4" placeholder="Ex: J'aimerais trop manger des sushis, ou surprise-moi !"></textarea>
+          </div>
+
+          <div class="step-actions">
+            <button type="button" class="btn-form-secondary btn-back" data-target-step="3">
+              ⬅ Retour
+            </button>
+            <button type="button" id="btn-step-4-next" class="btn-form-primary">
+              Voir le récapitulatif ➔
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 5: RÉCAPITULATIF & VALIDATION -->
+        <div id="step-5" class="form-step hidden">
+          <h3 class="step-question">Notre rendez-vous parfait ✨</h3>
+          <p class="step-subtext">Voici ce que tu as choisi pour nous deux, Emma</p>
+
+          <div class="recap-card">
+            <div class="recap-header">
+              <span class="recap-icon">💌</span>
+              <h4>Invitation pour toi & moi</h4>
+            </div>
+
+            <div class="recap-list">
+              <div class="recap-item">
+                <span class="recap-label">🎈 Activité :</span>
+                <span class="recap-val" id="recap-type">-</span>
+                <button type="button" class="recap-edit-btn" data-target-step="1">Modifier</button>
+              </div>
+
+              <div class="recap-item">
+                <span class="recap-label">📅 Date :</span>
+                <span class="recap-val" id="recap-date">-</span>
+                <button type="button" class="recap-edit-btn" data-target-step="2">Modifier</button>
+              </div>
+
+              <div class="recap-item">
+                <span class="recap-label">⏰ Heure :</span>
+                <span class="recap-val" id="recap-time">-</span>
+                <button type="button" class="recap-edit-btn" data-target-step="3">Modifier</button>
+              </div>
+
+              <div class="recap-item" id="recap-message-wrapper">
+                <span class="recap-label">💬 Ton message :</span>
+                <span class="recap-val" id="recap-message">Aucun message</span>
+                <button type="button" class="recap-edit-btn" data-target-step="4">Modifier</button>
+              </div>
+            </div>
+
+            <div class="recap-footer-note">
+              <p>J'ai déjà hâte d'y être avec toi 🤍</p>
+            </div>
+          </div>
+
+          <div class="step-actions">
+            <button type="button" class="btn-form-secondary btn-back" data-target-step="4">
+              ⬅ Retour
+            </button>
+            <button type="button" id="btn-final-submit" class="btn-form-primary btn-submit-glow">
+              Valider notre Date 💖
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 6: CONFIRMATION FINALE -->
+        <div id="step-6" class="form-step hidden">
+          <div class="confirmation-box">
+            <div class="confirmation-badge">C'est officiel, Emma ! 🎉</div>
+            <h3 class="confirmation-title">C'est noté avec amour 🤍</h3>
+            
+            <p class="confirmation-subtitle">
+              Merci d'avoir dit oui ! Prépare-toi pour un super moment.
+            </p>
+
+            <div class="final-ticket" id="final-ticket">
+              <!-- Dynamically populated card -->
+            </div>
+
+            <div class="calendar-actions">
+              <a id="google-cal-link" href="#" target="_blank" rel="noopener" class="btn-calendar google">
+                📅 Bloquer dans mon calendrier
+              </a>
+              <button type="button" id="btn-download-ics" class="btn-calendar ics">
+                📲 Enregistrer l'événement (.ics)
+              </button>
+            </div>
+
+            <div class="restart-container">
+              <button type="button" id="btn-restart" class="btn-restart">
+                🔄 Recommencer ou modifier notre date
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- URL de votre Google Apps Script pour enregistrer les réponses dans Google Sheets -->
+  <script>
+    window.GOOGLE_SHEETS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxA_sIfZMG8aOpLpB5GF_6nXSxfkJi72E4FMDj_2F3mRStcKs7orsrl7NMOmzQlrhyhlg/exec";
+  </script>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
